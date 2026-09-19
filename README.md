@@ -28,7 +28,23 @@ Clone the repository and run:
 ./install.sh
 ```
 
-The installer copies every `.workflow` bundle from `Library/Services` into:
+The installer discovers the `.workflow` bundles under `Library/Services` and presents an interactive menu:
+
+```text
+Automations in Library/Services:
+
+  1) Compare with Meld
+  2) Create New File Here
+  3) Open in IntelliJ IDEA
+  4) Open in VS Code Insiders
+
+  a) All
+  q) Quit
+
+Select automations (e.g. 1,3 or a):
+```
+
+Choose one or more numbers, separated by commas or spaces, or choose `a` to install everything. The selected workflows are copied into:
 
 ```text
 ~/Library/Services
@@ -36,10 +52,26 @@ The installer copies every `.workflow` bundle from `Library/Services` into:
 
 Running the installer again is safe. Existing workflows with the same names are replaced; unrelated services in `~/Library/Services` are left untouched.
 
-You can also inspect what would be installed without changing anything:
+### Non-interactive install
+
+To install everything without showing the selection menu:
+
+```bash
+./install.sh --all
+```
+
+### Dry run
+
+You can preview an interactive selection without changing anything:
 
 ```bash
 ./install.sh --dry-run
+```
+
+Or preview installing everything:
+
+```bash
+./install.sh --all --dry-run
 ```
 
 ## Requirements
